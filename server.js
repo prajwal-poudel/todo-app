@@ -1,13 +1,15 @@
 const express = require('express')
 const http = require('http')
-
+require('dotenv').config()
+var  port = process.env.PORT
 const app = express()
-app.use("/",(req,res)=>{
-    res.json({message:"Home Page"})
-})
+
+const router = require('./routes')
+app.use("/",router)
+
 
 const server = http.createServer(app)
 
-server.listen(5000,()=>{
-    console.log("App Running in localhost:5000");
+server.listen(port,()=>{
+    console.log("App Running in localhost:"+port);
 })
